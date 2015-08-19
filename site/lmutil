@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /bin/su -p -s /bin/bash nobody -c "/shared/ucl/apps/PGI/2015.7/linux86-64/15.7/bin/lmutil $@"
