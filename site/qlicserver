@@ -19,72 +19,7 @@ my ( $Path, $Script ) = map { m{^(.+)/([^/]+)$} } $0;    # instead of fileparse
 my $config = {
     ## file locations: can only be overwritten by command-line parameters
     -config => "$Path/qlicserver.config",
-    -limits => "$Path/qlicserver.limits",
-
-    ## fallback configuration - can be removed or left empty as desired
-    -defaultConfig => qq{
-<?xml version="1.0"?>
-<qlicserverConfig>
-<!--
-  <parameters type="overwrite">
-   <param name="delay">30</param>
-   <param name="timeout">10</param>
-   <param name="ppid">ppid</param>
-  </parameters>
--->
-<!--
-   | Map resource names (complexes) to values (features)
-   | served by the license manager(s).
-   | Resources without a "served" attribute are considered internal
-   | Resources with type "track" are reported but not managed
-   | The urgency is how much extra weight to give to particular resources.
-   | If a 'slot' is weighted with 1000, we can give an extra 10% to
-   | a few resources. [Format: INTEGER]
-   |
-   | The resource 'limit' specifies an upper limit to prevent applications
-   | from flooding the cluster and/or prevent jobs from consuming all the
-   | available licenses. A negative limit is subtracted from the total
-   | to obtain the limit. [Format: INTEGER]
-   |
-   | Derived resources are combined from sub-elements and inherit the
-   | limits from their sub-elements.
-   |
-   | Resources that are not served and not derived are internal resources
-   + -->
- <resources type="overwrite">
-  <!-- cfd applications -->
-   <resource name="foam"/>
-   <resource name="starjob" served="starpar" type="job" urgency="100" note="STAR-CD parallel starter"/>
-   <resource name="starp"   served="hpcdomains" note="STAR-CD parallel"/>
-   <resource name="stars"   served="starsuite" limit="2" note="STAR-CD serial"/>
-   <derived name="starcd">
-    <element>starp</element>
-    <element>stars</element>
-   </derived>
-
-  <!-- fea applications -->
-   <resource name="abaqus"   served="abaqus" type="job"/>
-   <resource name="hyper"    served="GridWorks"/>
-   <resource name="nastran1" served="NASTRAN" from="auglic1"/>
-   <resource name="nastran2" served="NASTRAN" from="auglic2"/>
-   <derived name="nastran">
-    <element>nastran1</element>
-    <element>nastran2</element>
-   </derived>
-   <resource name="thomat" note="abaqus high temp modelling" type="job"/>
-
-  <!-- other applications -->
-   <resource name="gtpower" served="GTpowerX" limit="4"/>
-
-  <!-- tracked applications -->
-   <resource name="gtise"   served="GTise"   type="track"/>
-   <resource name="proam"   served="proam"   type="track"/>
-   <resource name="prostar" served="prostar" type="track"/>
-
- </resources>
-</qlicserverConfig>
-},
-
+    -limits => "$Path/qlicserver.limits"
 };
 
 #
@@ -1501,7 +1436,8 @@ if ($daemon) {    # daemonize
         }
         else {
             ## ppid looks dead - let's die too
-            $daemon = 0;
+#            $daemon = 0;
+            sleep( $daemon || 0 );
         }
         return $daemon;
     };
@@ -1512,6 +1448,9 @@ if ($daemon) {    # daemonize
 
     # a new process group for the child
     POSIX::setsid() or die "Can't start a new session: $!";
+    open(PF, ">/var/run/qlicserver.pid");
+    print PF "$$";
+    close PF;
 }
 else {
     $daemon = 0;
