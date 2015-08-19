@@ -1,9 +1,13 @@
 ### Note
+This code is UCL-RITS lightly patched fork of Mark Olessen's flex-grid 
+and contains local patches and config.  Anyone else who wants to use it 
+is welcome to try and disentangle the UCL specific bits from the more 
+generally useful bits.
 
 This code is provided as a courtesy to other users with absolutely
 **no guarantees**! Usage questions should be posted to the
-users@gridengine.sunsource.net mailing list -- please do not email
-the author directly.
+users@gridengine.org mailing list -- please do not email either UCL 
+or the original  author directly.
 
 The github [project page](http://olesenm.github.com/flex-grid) contains
 extra details. Some additional documentation (eg, usage and frequently asked
@@ -14,8 +18,12 @@ questions about this software) can also be found on the gridengine wiki:
 
 
 Additional Resources:
-- [Grid Engine Project](http://gridengine.sunsource.net)
-- [Grid Engine MailLists](http://gridengine.sunsource.net/maillist.html)
+- [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE/)
+- [Open Grid Scheduler](http://gridscheuler.sourceforge.net)
+
+[Univa](http://www.univa.com/)  have license management baked into their 
+propreitary grid engine fork so this code probably isn't useful if you 
+use that.
 
 ---------------
 
