@@ -1,2 +1,4 @@
 #!/bin/bash
-exec /bin/su -p -s /bin/bash nobody -c "/shared/ucl/apps/PGI/2015.7/linux86-64/15.7/bin/lmutil $@"
+LMUTIL=/shared/ucl/apps/PGI/2015.7/linux86-64/15.7/bin/lmutil
+[ -x ${LMUTIL} ] || LMUTIL=/shared/ucl/apps/flexlm/Intel/flexlm/lmutil
+exec /bin/su -p -s /bin/bash nobody -c "exec ${LMUTIL} $@"
