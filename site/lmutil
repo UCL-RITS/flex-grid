@@ -1,4 +1,4 @@
 #!/bin/bash
 LMUTIL=/shared/ucl/apps/PGI/2015.7/linux86-64/15.7/bin/lmutil
 [ -x ${LMUTIL} ] || LMUTIL=/shared/ucl/apps/flexlm/Intel/flexlm/lmutil
-exec /bin/su -p -s /bin/bash nobody -c "exec ${LMUTIL} $@"
+exec /bin/su -p -s /bin/bash ccsplma -c "exec ${LMUTIL} $@"
