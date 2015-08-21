@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# qlicserver:   Starts the qlic server.
+#
+# processname: qlicserver
+# pidfile: /var/run/qlicserver.pid
+#
+QLICSERVER=/opt/geassist/qlic/site/qlicserver
+# Sanity checks.
+[ -x ${QLICSERVER} ] || exit 6
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+START_EXEC="${QLICSERVER} -d"
+STOP_EXEC="${QLICSERVER} -k"
+
+RETVAL=0
+
+. /opt/sge/default/common/settings.sh
+
+start() {
+    echo -n "Starting qlicserver Daemon: "
+    $START_EXEC
+    RETVAL=$?
+    echo "RETVAL=$RETVAL" >> /var/log/qlicserver.log
+    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/qlicserver
+}
+
+stop() {
+    echo -n "Stopping qlicserver Daemon: "
+    $STOP_EXEC
+    RETVAL=$?
+    [ -f /var/run/qlicserver.pid ] && rm -f /var/run/qlicserver.pid
+    echo
+    if [ $RETVAL -eq 0 ]; then
+        rm -f /var/lock/subsys/qlicserver
+    fi
+}
+
+# See how we were called.
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status qlicserver
+        RETVAL=$?
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    condrestart)
+        if [ -f /var/lock/subsys/qlicserver ]; then
+            stop
+            start
+        fi
+        ;;
+    reload)
+        killproc qlicserver -HUP
+        RETVAL=$?
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|reload}"
+        exit 1
+esac
+exit $RETVAL
+
