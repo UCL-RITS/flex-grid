@@ -56,7 +56,7 @@ export SGE_ROOT SGE_CELL SGE_ARCH
 #
 SGE_common=$SGE_ROOT/$SGE_CELL/common
 SGE_utilbin=$SGE_ROOT/utilbin/$SGE_ARCH
-SGE_site=$SGE_ROOT/$SGE_CELL/site
+SGE_site=/opt/geassist/qlic/site
 export SGE_common SGE_utilbin SGE_site
 
 # -----------------------------------------------------------------------------
