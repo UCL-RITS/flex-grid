@@ -1,4 +1,4 @@
 #!/bin/bash
-LMUTIL=/shared/ucl/apps/PGI/2015.7/linux86-64/15.7/bin/lmutil
-[ -x ${LMUTIL} ] || LMUTIL=/shared/ucl/apps/flexlm/Intel/flexlm/lmutil
+LMUTIL=/shared/ucl/apps/flexlm/Intel/flexlm/lmutil
+[ -x ${LMUTIL} ] ||LMUTIL=/shared/ucl/apps/PGI/2015.7/linux86-64/15.7/bin/lmutil 
 exec /usr/bin/sudo -u ccsplma  ${LMUTIL} "$@" 
