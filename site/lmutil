@@ -1,4 +1,6 @@
 #!/bin/bash
-LMUTIL=/shared/ucl/apps/lm-utils/bin/lmutil
-[ -x ${LMUTIL} ] || LMUTIL=/shared/ucl/apps/flexlm/Intel/flexlm/lmutil
-exec /usr/bin/sudo -u ccsplma  ${LMUTIL} "$@" 
+for lmutil in /shared/ucl/apps/lm-utils/bin/lmutil /shared/ucl/apps/Matlab/R2019b/full/etc/glnxa64/lmutil /shared/ucl/apps/flexlm/Intel/flexlm/lmutil
+do
+[ -x ${lmutil} ] && exec /usr/bin/sudo -u ccsplma ${lmutil} "$@"
+done
+echo "No lmutil found"
