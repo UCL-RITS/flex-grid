@@ -9,12 +9,13 @@ This code is provided as a courtesy to other users with absolutely
 users@gridengine.org mailing list -- please do not email either UCL 
 or the original  author directly.
 
-The github [project page](http://olesenm.github.com/flex-grid) contains
+The github [project page](http://olesenm.github.io/flex-grid) contains
 extra details. Some additional documentation (eg, usage and frequently asked
-questions about this software) can also be found on the gridengine wiki:
+questions about this software) can also be found on the gridengine wiki
+(links lead to suitable copies on the Wayback Machine, as gridengine.info seems defunct):
 
-    http://wiki.gridengine.info/wiki/index.php/Olesen-FLEXlm-Integration
-    http://wiki.gridengine.info/wiki/index.php/Olesen-FLEXlm-Configuration
+* [http://wiki.gridengine.info/wiki/index.php/Olesen-FLEXlm-Integration](https://web.archive.org/web/20181215172521/http://wiki.gridengine.info/wiki/index.php/Olesen-FLEXlm-Integration)
+* [http://wiki.gridengine.info/wiki/index.php/Olesen-FLEXlm-Configuration](https://web.archive.org/web/20090412130138/http://wiki.gridengine.info:80/wiki/index.php/Olesen-FLEXlm-Configuration) (old docs, newer config docs [here](https://olesenm.github.io/flex-grid/config.html))
 
 
 Additional Resources:
