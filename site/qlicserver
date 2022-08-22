@@ -4,6 +4,7 @@ use 5.008;      ## minimum perl version
 use strict;
 use threads;    ## REMOVE FOR UNTHREADED PERL
 use Getopt::Std qw( getopts );
+use File::Path qw( make_path );
 use POSIX qw( );
 import License;
 import GridEngine;
@@ -252,7 +253,7 @@ sub resolveOutputFile {
             and $file !~ m{^\.?/}
             and $file ne "-" )
         {
-            -d $dir or mkdir $dir;
+            -d $dir or make_path $dir;
             $file = "$dir/$file";
         }
     }
