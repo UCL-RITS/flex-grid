@@ -1,6 +1,4 @@
 #!/bin/bash
-for lmutil in /usr/local/bin/lmutil /shared/ucl/apps/lm-utils/bin/lmutil /shared/ucl/apps/Matlab/R2019b/full/etc/glnxa64/lmutil /shared/ucl/apps/flexlm/Intel/flexlm/lmutil
-do
+lmutil="$(PATH=/usr/local/bin:/lustre/shared/ucl/apps/lm-utils/bin/:/lustre/shared/ucl/apps/Matlab/R2019b/full/etc/glnxa64/:/lustre/shared/ucl/apps/flexlm/Intel/flexlm/:/lustre/UCL/apps/lm-utils/bin/:/lustreUCL/apps/Matlab/R2019b/full/etc/glnxa64/:/lustreUCL/apps/flexlm/Intel/flexlm/ /usr/bin/which lmutil 2>/dev/null)"
 [ -x ${lmutil} ] && exec /usr/bin/sudo -u ccsplma ${lmutil} "$@"
-done
 echo "No lmutil found"
